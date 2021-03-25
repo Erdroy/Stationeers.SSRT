@@ -7,16 +7,19 @@ namespace SSRTPlugin.Scripts
 {
     public class SSRTPlugin : IPlugin
     {
+        private GameObject _root;
+        
         public void OnLoad()
         {
             Debug.Log("SSRT: Hello, World!");
-            var gameObject = new GameObject("SSRT");
-            Object.DontDestroyOnLoad(gameObject);
-            gameObject.AddComponent<SSRTManager>();
+            _root = new GameObject("SSRT");
+            Object.DontDestroyOnLoad(_root);
+            _root.AddComponent<SSRTManager>();
         }
 
         public void OnUnload()
         {
+            Object.Destroy(_root);
         }
     }
 }
